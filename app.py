@@ -17,7 +17,7 @@ st.write(
 
 @st.cache_resource
 def load_model():
-    return joblib.load("electric_bill_model(2).pkl")
+    return joblib.load("electric_bill_model (2).pkl")
 
 model = load_model()
 
