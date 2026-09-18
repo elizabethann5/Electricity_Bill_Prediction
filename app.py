@@ -29,12 +29,12 @@ ac_units = st.number_input(
 if st.button("Predict Electricity Bill"):
 
     if ac_units <= 0:
-        st.toast("⚠️ AC Units must be greater than 0!", icon="⚠️")
-        st.error("Please enter AC Units greater than 0.")
+        st.toast("⚠️ Value must be greater than 0!", icon="⚠️")
+        st.error("Please enter value greater than 0.")
 
     elif ac_units > 150:
-        st.toast("⚠️ AC Units should not exceed 150!", icon="⚠️")
-        st.error("Please enter AC Units less than or equal to 150.")
+        st.toast("⚠️ Value should not exceed 150!", icon="⚠️")
+        st.error("Please enter value less than or equal to 150.")
 
     else:
         new_data = pd.DataFrame({
