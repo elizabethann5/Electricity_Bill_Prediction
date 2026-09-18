@@ -10,7 +10,7 @@ st.set_page_config(
 )
 
 st.title("⚡ Electricity Bill Prediction")
-st.write("Predict your electricity bill using AC units and number of fans.")
+st.write("Predict your electricity bill based on AC consumption units.")
 
 @st.cache_resource
 def load_model():
@@ -18,7 +18,7 @@ def load_model():
 
 model = load_model()
 
-st.subheader("Enter Consumption Details")
+st.subheader("Enter AC Consumption")
 
 ac_units = st.number_input(
     "AC Units",
@@ -26,26 +26,19 @@ ac_units = st.number_input(
     step=1
 )
 
-fan_units = st.number_input(
-    "Number of Fans",
-    value=1,
-    step=1
-)
-
 if st.button("Predict Electricity Bill"):
 
-    if ac_units <= 0 or fan_units <= 0:
-        st.toast("⚠️ Values must be greater than 0!", icon="⚠️")
-        st.error("Please enter values greater than 0.")
+    if ac_units <= 0:
+        st.toast("⚠️ AC Units must be greater than 0!", icon="⚠️")
+        st.error("Please enter AC Units greater than 0.")
 
-    elif ac_units > 150 or fan_units > 150:
-        st.toast("⚠️ Values should not exceed 150!", icon="⚠️")
-        st.error("Please enter values less than or equal to 150.")
+    elif ac_units > 150:
+        st.toast("⚠️ AC Units should not exceed 150!", icon="⚠️")
+        st.error("Please enter AC Units less than or equal to 150.")
 
     else:
         new_data = pd.DataFrame({
-            "AC_Units": [ac_units],
-            "Fan_Units": [fan_units]
+            "AC_Units": [ac_units]
         })
 
         predicted_bill = model.predict(new_data)[0]
